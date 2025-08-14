@@ -4,6 +4,7 @@
 	blur,
     } from 'svelte/transition';
     
+    import fastImg from "../../static/FastAPI.svg";
 
     import { type CarouselAPI } from '$lib/components/ui/carousel/context';
     import Button from '$lib/components/ui/button/button.svelte';
@@ -101,7 +102,7 @@
                 ></ObjectiveCarousel> -->
 
                 <SelectiveCarousel
-                objects={[["https://upload.wikimedia.org/wikipedia/commons/1/1b/Svelte_Logo.svg","svelte","Svelte is my go to choice for front-end development as It's simple yet powerful rune system, as well as how it handles SSR are strong pros for efficient developers."],["/FastAPI.svg","fastapi"]]}
+                objects={[["https://upload.wikimedia.org/wikipedia/commons/1/1b/Svelte_Logo.svg","svelte","Svelte is my go to choice for front-end development as It's simple yet powerful rune system, as well as how it handles SSR are strong pros for efficient developers."],[fastImg,"fastapi"]]}
                 class="mt-4 ml-5"
                 bind:currentObject={current}
                 ></SelectiveCarousel>
