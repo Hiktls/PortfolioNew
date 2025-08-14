@@ -6,7 +6,7 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Separator from "$lib/components/ui/separator/separator.svelte";
 	let { children } = $props();
-
+export const prerender = true;
 </script>
 
 <ModeWatcher/>
