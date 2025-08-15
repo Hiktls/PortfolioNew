@@ -11,7 +11,7 @@
 
 	let pageRes;
 	let blockAmount = $state(0);
-	let blockSize = 10;
+	let blockSize = 20;
 
 
 	let nCols = $state(0);
@@ -79,14 +79,14 @@
 
 
 {#snippet backgroundBlock(size:number)}
-    <div class="bg-background border-border border-1 size-{size} hover:border-white"></div>
+    <div class="bg-background border-border border-1 size-{size.toString()} hover:border-white"></div>
 {/snippet}
 
 {#await pagePromise}
 	
 {:then val} 
 <div class="w-screen h-screen">
-		<div style="--row-count: repeat({nRows}, minmax(0, 1fr)); --col-count: repeat({nCols}, minmax(0, 1fr));" class="-z-1 overflow-x-hidden fixed gap-x-5 lg:gap-x-0 md:gap-y-5 w-screen h-screen grid grid-rows-(--row-count) grid-cols-(--col-count)">
+		<div style="--row-count: repeat({nRows}, minmax(0, 1fr)); --col-count: repeat({nCols}, minmax(0, 1fr));" class="-z-1 overflow-x-hidden fixed w-screen h-screen grid grid-rows-(--col-count) grid-cols-(--row-count)">
 			{#each {length: blockAmount }}
 				{@render backgroundBlock(blockSize)}
 			{/each}
