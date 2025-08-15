@@ -74,7 +74,7 @@
 
 
 <div class="md:h-300 h-90 bg-no-repeat">
-    <div class="w-225 h-50 m-auto mb-20 mt-40">
+    <div class="w-225 h-50 m-auto mb-20">
         <span class="">
             <span class="will-change-contents lg:text-6xl text-4xl">Hello! I am <span class="">Kaan</span>, </span>
             {#key title}{@render titleText()}{/key}

@@ -11,11 +11,11 @@
 
 	let pageRes;
 	let blockAmount = $state(0);
-	let blockSize = 4;
+	let blockSize = 10;
 
 
-	let nCols;
-	let nRows;
+	let nCols = $state(0);
+	let nRows = $state(0);
 
 	let pagePromise = new Promise((resolve,reject) => {
 		pageRes = resolve;
@@ -30,28 +30,41 @@
 			const ctx = canvas.getContext("2d")!;
 			
 			ctx.fillStyle = "rgb(200 0 0)";
-			for(let i = 0;i < nRows!;i+= blockSize){
-				for (let j = 0; j < nCols!;j+= blockSize){
-					console.log("YEA")
-					let rect = new Path2D();
-					rect.rect(i,j,blockSize,blockSize)
-					ctx.stroke(rect);
-				}
+			ctx.strokeStyle = "rgb(200 0 0)";
+			for(let i = 0;i < window.innerWidth!;i++){
+					for(let j=0;j<window.innerHeight;j++){
+						let rect = new Path2D();
+						rect.rect(i*blockSize,j*blockSize,blockSize,blockSize);
+						ctx.stroke(rect);
+						console.log(i*blockSize);
+					}
 			}
 
 		}
 		
 	}
 
+	let rowColStr = $state("")
+
+	function generateRowCol(row:number,col:number) {
+		return `grid-rows-${row} grid-cols-${col}`
+	}
+	function test() {
+		return new HTMLElement().innerHTML = ""
+	}
+
 	onMount(() => {
-		nCols = Math.floor(window.innerWidth / blockSize);
-		nRows = Math.floor(window.innerHeight / blockSize);
+		nCols = Math.floor(window.innerHeight / blockSize);
+		nRows = Math.floor(window.innerWidth / blockSize);
 		blockAmount = Math.floor(nCols * nRows);
 		pageRes!();
-		console.log(window.innerHeight/blockSize)
-		console.log(window.innerWidth/blockSize)
+
+		rowColStr = generateRowCol(nRows,nCols);
+
+		console.log("Rows",nRows.toString())
+		console.log("Columns",nCols.toString())
 		console.log("BLOCKS",blockAmount)
-		on(window,"load",handleCanvas);
+		// on(window,"load",handleCanvas);
 	})
 
 //Math.floor(window.innerWidth/blockSize
@@ -66,40 +79,34 @@
 
 
 {#snippet backgroundBlock(size:number)}
-    <div class="bg-background border-border border-1 size-{size}"></div>
+    <div class="bg-background border-border border-1 size-{size} hover:border-white"></div>
 {/snippet}
-
-<header>
-	<div class="flex flex-col w-screen h-12 items-end">
-		<Button variant="outline" class=" justify-center mt-auto mb-auto mr-1" onclick={toggleMode}>
-			{#key mode}
-				{#if mode.current == "dark"}
-				<Sun/>
-				{:else}
-				<Moon/>
-				{/if}
-			
-			{/key}
-		</Button>
-	</div>
-	<Separator/>
-</header>
 
 {#await pagePromise}
 	
 {:then val} 
-<div class="w-full h-full">
-	<div class="-z-1 absolute w-full h-full">
-		<canvas id="backgroundCanvas" width={window.innerWidth} height={window.innerHeight}></canvas>
-	</div>
-	<div class="z-1">
+<div class="w-screen h-screen">
+		<div style="--row-count: repeat({nRows}, minmax(0, 1fr)); --col-count: repeat({nCols}, minmax(0, 1fr));" class="-z-1 overflow-x-hidden fixed gap-x-5 lg:gap-x-0 md:gap-y-5 w-screen h-screen grid grid-rows-(--row-count) grid-cols-(--col-count)">
+			{#each {length: blockAmount }}
+				{@render backgroundBlock(blockSize)}
+			{/each}
+		</div>
+	<header class="z-1">
+		<div class="flex flex-col w-screen h-12 items-end z-1">
+			<Button variant="outline" class="justify-center mt-auto mb-auto mr-1 z-1" onclick={toggleMode}>
+				{#key mode}
+					{#if mode.current == "dark"}
+					<Sun class="z-1"/>
+					{:else}
+					<Moon class="z-1"/>
+					{/if}
+				{/key}
+			</Button>
+		</div>
+	</header>
+
+	<div class="z-1 mt-5">
 		{@render children?.()}
 	</div>
 </div>
-
 {/await}
-
-
-<footer>
-	<Separator/>
-</footer>
