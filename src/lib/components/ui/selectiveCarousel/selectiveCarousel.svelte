@@ -71,7 +71,7 @@
     <div class="overflow-hidden w-full mt-10 h-full">
         {#key lastClicked}
             <img out:slide={{duration:500}} in:slide={{delay:500}} class="size-40" alt={objects[lastClicked][1]} src={objects[lastClicked][0]}/>
-            <span out:typewriter|global={{speed:2,delay:0}} in:typewriter|global={{speed:1,delay:1}}>
+            <span>
                 {@html objects[lastClicked][2]}
             </span>
         {/key}

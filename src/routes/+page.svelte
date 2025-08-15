@@ -63,13 +63,14 @@
     }
     // out:typewriter|global={{speed:2,delay:0}} in:typewriter|global={{speed:1,delay:1}}
 
+
+
 </script>
 
 
 {#snippet titleText()}
     <span class=" text-primary drop-shadow-primary drop-shadow-2xl font-semibold mb-20 mt-40 will-change-contents lg:text-6xl text-4xl" out:typewriter|global={{speed:2,delay:0}} in:typewriter|global={{speed:1,delay:1}} >{title}</span>
 {/snippet}
-
 
 
 <div class="md:h-300 h-90 bg-no-repeat">
