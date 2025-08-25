@@ -1,17 +1,24 @@
 <script lang="ts">
 
-    import {
-	blur,
-    } from 'svelte/transition';
+    import hljs from 'highlight.js/lib/core';
+    import python from 'highlight.js/lib/languages/python';
+    import js from 'highlight.js/lib/languages/javascript';
+    import rust from 'highlight.js/lib/languages/rust';
+    import docker from 'highlight.js/lib/languages/dockerfile';
+
+
     
     import fastImg from "../../static/FastAPI.svg";
-
-    import { type CarouselAPI } from '$lib/components/ui/carousel/context';
     import Button from '$lib/components/ui/button/button.svelte';
-    import ObjectiveCarousel from '$lib/components/ui/objectiveCarousel/objectiveCarousel.svelte';
-    import { ArrowDown,Ellipsis,ChevronRight } from 'lucide-svelte';
-	import SelectiveCarousel from '$lib/components/ui/selectiveCarousel/selectiveCarousel.svelte';
-    
+    import { ArrowDown,Ellipsis,ChevronRight, LogOut } from 'lucide-svelte';
+    import * as Drawer from "$lib/components/ui/drawer/index";
+
+
+    hljs.registerLanguage('python', python);
+    hljs.registerLanguage('javascript', js);
+    hljs.registerLanguage('rust', rust);
+    hljs.registerLanguage('dockerfile', docker);
+
     const TITLES = ["a software developer","a linux enthusiast","a homecook","a backend developer","your future coworker","a language learning fan","a curious pentester"];
     let title = $state(TITLES[0]);
     
@@ -21,11 +28,25 @@
         title = TITLES[Math.floor(Math.random() * TITLES.length)]
     },4000)
     
-    
-    let current = $state("");
 
-    let carObjects = [["https://upload.wikimedia.org/wikipedia/commons/1/1b/Svelte_Logo.svg","svelte"],["/FastAPI.svg","fastapi"]]
-    let carNotes = {"svelte": "Svelte is my go-to choice for front-end development as It is very versatile and \"makes the most sense\" when a design is being implemented."}
+    let fastApiSamp = `
+    from typing import Union
+    from fastapi import FastAPI
+
+    app = FastAPI()
+
+
+    @app.get("/")
+    def read_root():
+        return {"Hello": "World"}
+
+
+    @app.get("/items/{item_id}")
+    def read_item(item_id: int, q: Union[str, None] = None):
+    return {"item_id": item_id, "q": q}`;
+    
+
+
 
     function typewriter(node:HTMLElement,{speed = 1,delay = 1}:{speed?:number,delay?:number}){
         const valid = node.childNodes.length === 1 && node.childNodes[0].nodeType === Node.TEXT_NODE;
@@ -84,40 +105,47 @@
         
         
         <div class="m-auto w-60 h-80">
-            <Button class="w-40 h-10 lg:text-lg" onclick={() => window.location.href="#about"}><ArrowDown size={4}/> Read More</Button>
+            <Button class="w-40 h-10 lg:text-lg pointer-events-auto" onclick={() => window.location.href="#about"}><ArrowDown size={4}/> Read More</Button>
         </div>
 
         <div id="about" class="w-screen ">
 
-            {#snippet logoCard(src:string,alt:string,description:string)}
-            <div id={alt} class="bg-card rounded-2xl border-primary size-60 flex justify-center select-none hover:animate-pulse"> <img class="size-30 m-auto" src={src} alt={alt}/> </div>
+            {#snippet logoCard(src:string,alt:string,description:string,sample:string)}
+            {@const highlighted = hljs.highlightAuto(sample).value}
+            <Drawer.Root>
+                <Drawer.Trigger>
+            <div id={alt} class="rounded-2xl border-gray-400 border-1 size-40 flex justify-center select-none transition ease-in-out hover:scale-110"> <img class="size-20 m-auto" src={src} alt={alt}/> </div>
+                </Drawer.Trigger>
+                <Drawer.Content>
+                    <Drawer.Header>
+                        <Drawer.Title>{alt.toUpperCase()}</Drawer.Title>
+                    </Drawer.Header>
+                    <div class="m-5 ">
+                        <p class="  md:text-2xl">{description}</p>
+                        <div class="whitespace-pre-wrap">
+                            {@html highlighted}
+                        </div>
+                    </div>
+                    <Drawer.Footer>
+                        <Button  variant="destructive">Leave</Button>
+                    </Drawer.Footer>
+                </Drawer.Content>
+            </Drawer.Root>
             {/snippet}
 
 
 
-            <div class="mt-20 mb-20 w-[80%] h-120 bg-card m-auto rounded-2xl border-1 border-border">
-                <!-- <ObjectiveCarousel
-                objects={[["https://upload.wikimedia.org/wikipedia/commons/1/1b/Svelte_Logo.svg","svelte"],["/FastAPI.svg","fastapi"]]}
-                class=""
-                bind:currentObject={current}
-                ></ObjectiveCarousel> -->
+            <div class="pointer-events-auto lg:w-300 h-200 overflow-hidden grid grid-cols-3 grid-rows-3 m-auto gap-20 p-5">
+                {@render logoCard(fastImg,"fastapi","FastAPI is my favorite backend framework due to its speed, ease of use, and automatic generation of OpenAPI documentation.",fastApiSamp)}
+                {@render logoCard(fastImg,"fastapi","FastAPI is my favorite backend framework due to its speed, ease of use, and automatic generation of OpenAPI documentation.",fastApiSamp)}
+                {@render logoCard(fastImg,"fastapi","FastAPI is my favorite backend framework due to its speed, ease of use, and automatic generation of OpenAPI documentation.",fastApiSamp)}
+                {@render logoCard(fastImg,"fastapi","FastAPI is my favorite backend framework due to its speed, ease of use, and automatic generation of OpenAPI documentation.",fastApiSamp)}
+                {@render logoCard(fastImg,"fastapi","FastAPI is my favorite backend framework due to its speed, ease of use, and automatic generation of OpenAPI documentation.",fastApiSamp)}
+                {@render logoCard(fastImg,"fastapi","FastAPI is my favorite backend framework due to its speed, ease of use, and automatic generation of OpenAPI documentation.",fastApiSamp)}
 
-                <SelectiveCarousel
-                objects={[["https://upload.wikimedia.org/wikipedia/commons/1/1b/Svelte_Logo.svg","svelte","Svelte is my go to choice for front-end development as It's simple yet powerful rune system, as well as how it handles SSR are strong pros for efficient developers."],[fastImg,"fastapi"]]}
-                class="mt-4 ml-5"
-                bind:currentObject={current}
-                ></SelectiveCarousel>
-
-                <div id="content">
-
-                </div>
-                
-            </div>
-            
-
-            <div class="flex flex-row gap-10 mt-20 justify-center ">
 
             </div>
+
 
         </div>
 </div>

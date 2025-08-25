@@ -7,6 +7,7 @@
 	import Separator from "$lib/components/ui/separator/separator.svelte";
 	import { onMount } from 'svelte';
 	import { on } from 'svelte/events';
+	import type { Attachment } from 'svelte/attachments';
 	let { children } = $props();
 
 	let pageRes;
@@ -22,26 +23,53 @@
 	})
 
 
-	function handleCanvas() {
-		const canvas = document.getElementById("backgroundCanvas") as HTMLCanvasElement;
-		if (canvas.getContext("2d")){
-			console.log("HANDLING!");
 
-			const ctx = canvas.getContext("2d")!;
-			
-			ctx.fillStyle = "rgb(200 0 0)";
-			ctx.strokeStyle = "rgb(200 0 0)";
-			for(let i = 0;i < window.innerWidth!;i++){
-					for(let j=0;j<window.innerHeight;j++){
-						let rect = new Path2D();
-						rect.rect(i*blockSize,j*blockSize,blockSize,blockSize);
-						ctx.stroke(rect);
-						console.log(i*blockSize);
-					}
-			}
+	let currentIdleID = $state(0);
 
+
+	let animValid = $state(false);
+	let animSource = $state(0);
+
+
+	function effectSkip(id:number,status:string):boolean{
+		if ((id+1) % nRows == 0){
+			return false;
 		}
-		
+		console.log("block-"+id);
+		let d = document.getElementById("block-"+id)!;
+
+		d!.style.setProperty("--anim-stat",status);
+		return true;
+	}
+
+	function idleEffectEnter(id:number) {
+		currentIdleID = setTimeout(() => {
+			console.warn(id+" is starting an effect!")
+			let iter = 0;
+			while (effectSkip(id+iter,"white") == true){
+				iter++;
+			}
+			iter = 0;
+			while (effectSkip(id+iter,"white") == true){
+				iter--;
+			}
+			animValid = true;
+			animSource = id;
+		},2000);
+	}
+	function idleEffectOut() {
+		clearTimeout(currentIdleID);
+		if (animValid == true){
+			
+			let iter = 0;
+			while (effectSkip(animSource+iter,"var(--color-border)") == true){
+				iter++;
+			}
+			iter = 0;
+			while (effectSkip(animSource+iter,"var(--color-border)") == true){
+				iter--;
+			}
+		}
 	}
 
 	let rowColStr = $state("")
@@ -49,22 +77,23 @@
 	function generateRowCol(row:number,col:number) {
 		return `grid-rows-${row} grid-cols-${col}`
 	}
-	function test() {
-		return new HTMLElement().innerHTML = ""
-	}
+
 
 	onMount(() => {
 		nCols = Math.floor(window.innerHeight / blockSize);
 		nRows = Math.floor(window.innerWidth / blockSize);
-		blockAmount = Math.floor(nCols * nRows);
+		blockAmount = (window.innerHeight * window.innerWidth) / (blockSize * blockSize);
 		pageRes!();
 
 		rowColStr = generateRowCol(nRows,nCols);
 
+
+		console.log("BLOCK SIZE",blockSize)
 		console.log("Rows",nRows.toString())
 		console.log("Columns",nCols.toString())
 		console.log("BLOCKS",blockAmount)
 		// on(window,"load",handleCanvas);
+
 	})
 
 //Math.floor(window.innerWidth/blockSize
@@ -78,17 +107,19 @@
 </svelte:head>
 
 
-{#snippet backgroundBlock(size:number)}
-    <div class="bg-background border-border border-1 size-{size.toString()} hover:border-white"></div>
+{#snippet backgroundBlock(size:number,id:number)}
+    <div onpointerleave={() => idleEffectOut()} onpointerenter={() => idleEffectEnter(id)} id="block-{id}" style="--anim-stat: var(--color-border);" 
+		class="bg-background border-1 size-{(size/4).toString()} hover:border-white transition ease-linear duration-300 border-(--anim-stat)"></div>
 {/snippet}
 
 {#await pagePromise}
 	
 {:then val} 
-<div class="w-screen h-screen">
-		<div style="--row-count: repeat({nRows}, minmax(0, 1fr)); --col-count: repeat({nCols}, minmax(0, 1fr));" class="-z-1 overflow-x-hidden fixed w-screen h-screen grid grid-rows-(--col-count) grid-cols-(--row-count)">
-			{#each {length: blockAmount }}
-				{@render backgroundBlock(blockSize)}
+
+<div class="w-screen h-screen relative z-1">
+		<div style="--row-count: repeat({nRows}, minmax(0, 1fr)); --col-count: repeat({nCols}, minmax(0, 1fr));" class="-z-1 overflow-hidden fixed w-screen h-screen grid grid-rows-(--col-count) grid-cols-(--row-count)">
+			{#each {length: blockAmount },i}
+				{@render backgroundBlock(blockSize,i)}
 			{/each}
 		</div>
 	<header class="z-1">
@@ -105,8 +136,8 @@
 		</div>
 	</header>
 
-	<div class="z-1 mt-5">
+	<div class="z-1 mt-5 pointer-events-none ">
 		{@render children?.()}
-	</div>
-</div>
+	</div> 
+</div> 
 {/await}
