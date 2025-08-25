@@ -1,15 +1,28 @@
 <script lang="ts">
-
+    // HIGHLIGHT.JS IMPORTS
     import hljs from 'highlight.js/lib/core';
+    import "highlight.js/styles/github-dark.css";
     import python from 'highlight.js/lib/languages/python';
     import js from 'highlight.js/lib/languages/javascript';
     import rust from 'highlight.js/lib/languages/rust';
     import docker from 'highlight.js/lib/languages/dockerfile';
+    import htmlType from "highlight.js/lib/languages/xml";
+    import bash from "highlight.js/lib/languages/bash";
+    // END HIGHLIGHT.JS IMPORTS
 
+    //ICON IMPORTS
+    import fastImg from "$lib/assets/FastAPI.svg";
+    import svelteImg from "$lib/assets/Svelte.svg";
+    import rustImg from "$lib/assets/Rust.png";
+    import linuxImg from "$lib/assets/Linux.svg";
+    import pythonimg from "$lib/assets/Python.svg";
+    import dockerImg from "$lib/assets/Docker.svg";
+    import jsImg from "$lib/assets/JS.svg";
+    import awsImg from "$lib/assets/AWS.svg";
+    import solidityImg from "$lib/assets/Solidity.svg";
+    //END ICON IMPORTS
 
-    
-    import fastImg from "../../static/FastAPI.svg";
-    import Button from '$lib/components/ui/button/button.svelte';
+    import {Button,buttonVariants} from '$lib/components/ui/button/index';
     import { ArrowDown,Ellipsis,ChevronRight, LogOut } from 'lucide-svelte';
     import * as Drawer from "$lib/components/ui/drawer/index";
 
@@ -18,35 +31,75 @@
     hljs.registerLanguage('javascript', js);
     hljs.registerLanguage('rust', rust);
     hljs.registerLanguage('dockerfile', docker);
-
+    hljs.registerLanguage('xml', htmlType);
+    hljs.registerLanguage('bash', bash);
     const TITLES = ["a software developer","a linux enthusiast","a homecook","a backend developer","your future coworker","a language learning fan","a curious pentester"];
     let title = $state(TITLES[0]);
     
-    let s = $state(0);
     
     setInterval(() => {
         title = TITLES[Math.floor(Math.random() * TITLES.length)]
     },4000)
     
+    let svelteStart = `<sc` + `ript>`;
+    let svelteEnd = `</sc` + `ript>`;
 
-    let fastApiSamp = `
-    from typing import Union
-    from fastapi import FastAPI
+    let samples = {
+        fastApi:
+`#fastapi.tiangolo.com
+from typing import Union
+from fastapi import FastAP
 
-    app = FastAPI()
+app = FastAPI(
 
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
 
-    @app.get("/")
-    def read_root():
-        return {"Hello": "World"}
+@app.get("/items/{item_id}")
 
+def read_item(item_id: int, q: Union[str, None] = None):
+    return {"item_id": item_id, "q": q}`,
+        svelte:
+`${svelteStart}
+    let names = ["Alice","Bob","Charlie"];
+    let currentName = $state("");
+    setInterval(() => {
+        currentName = names[Math.floor(Math.random() * names.length)];
+    },3000);
+${svelteEnd}
 
-    @app.get("/items/{item_id}")
-    def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}`;
+{#key currentName}
+    <h1>Hello {currentName}!</h1>
+{/key}`,
+        rust:
+`fn main() {
+    println!("Did you know, printing \"Hello, World!\" to test an initial program \\ 
+        has been popularized by the C Programming Language book \\ 
+        by Brian Kernighan and Dennis Ritchie in 1978?");
+}
+`,
+        linux:
+`$ sudo pacman -Syu
+<...>
+$ sudo pacman -S cowsay fortune
+<...>
+$ fortune | cowsay
+"
+  _______________________________________
+/ If at first you do succeed, try to hide \\\\
+\\\\ your astonishment                       /
+  ---------------------------------------
+         \\   ^__^ 
+          \\  (oo)\_______
+             (__)\       )\\/\\
+                 ||----w |
+                 ||     ||
+"
+`
+};
     
-
-
+               
 
     function typewriter(node:HTMLElement,{speed = 1,delay = 1}:{speed?:number,delay?:number}){
         const valid = node.childNodes.length === 1 && node.childNodes[0].nodeType === Node.TEXT_NODE;
@@ -114,36 +167,36 @@
             {@const highlighted = hljs.highlightAuto(sample).value}
             <Drawer.Root>
                 <Drawer.Trigger>
-            <div id={alt} class="rounded-2xl border-gray-400 border-1 size-40 flex justify-center select-none transition ease-in-out hover:scale-110"> <img class="size-20 m-auto" src={src} alt={alt}/> </div>
+                    <div id={alt} class="rounded-2xl border-muted-foreground border-2 size-40 flex justify-center select-none transition ease-in-out hover:scale-110"> <img class="size-20 m-auto" src={src} alt={alt}/> </div>
                 </Drawer.Trigger>
                 <Drawer.Content>
                     <Drawer.Header>
                         <Drawer.Title>{alt.toUpperCase()}</Drawer.Title>
                     </Drawer.Header>
-                    <div class="m-5 ">
-                        <p class="  md:text-2xl">{description}</p>
-                        <div class="whitespace-pre-wrap">
-                            {@html highlighted}
+                    <div class="">
+                        <p class="ml-5 md:text-2xl">{description}</p>
+                        <div class=" bg-[#27272a] md:w-250 ml-5 mt-2 pt-2 pl-2 pb-2 rounded-lg border-1 border-muted-foreground text-white">
+                            <code class="whitespace-pre-wrap md:text-lg  pointer-events-auto">
+                                {@html highlighted}
+                            </code>
                         </div>
+
                     </div>
                     <Drawer.Footer>
-                        <Button  variant="destructive">Leave</Button>
+                        <Drawer.Close class={buttonVariants({ variant: "outline" })}>Leave</Drawer.Close>
                     </Drawer.Footer>
                 </Drawer.Content>
             </Drawer.Root>
             {/snippet}
 
 
-
             <div class="pointer-events-auto lg:w-300 h-200 overflow-hidden grid grid-cols-3 grid-rows-3 m-auto gap-20 p-5">
-                {@render logoCard(fastImg,"fastapi","FastAPI is my favorite backend framework due to its speed, ease of use, and automatic generation of OpenAPI documentation.",fastApiSamp)}
-                {@render logoCard(fastImg,"fastapi","FastAPI is my favorite backend framework due to its speed, ease of use, and automatic generation of OpenAPI documentation.",fastApiSamp)}
-                {@render logoCard(fastImg,"fastapi","FastAPI is my favorite backend framework due to its speed, ease of use, and automatic generation of OpenAPI documentation.",fastApiSamp)}
-                {@render logoCard(fastImg,"fastapi","FastAPI is my favorite backend framework due to its speed, ease of use, and automatic generation of OpenAPI documentation.",fastApiSamp)}
-                {@render logoCard(fastImg,"fastapi","FastAPI is my favorite backend framework due to its speed, ease of use, and automatic generation of OpenAPI documentation.",fastApiSamp)}
-                {@render logoCard(fastImg,"fastapi","FastAPI is my favorite backend framework due to its speed, ease of use, and automatic generation of OpenAPI documentation.",fastApiSamp)}
-
-
+                {@render logoCard(fastImg,"fastapi","FastAPI is my go-to framework due to it's feature rich and high performance toolkit, especiallly due to its OpenAPI auto-documentation.",samples.fastApi)}
+                {@render logoCard(svelteImg,"svelte","Svelte is the first front-end development framework I reach for in my toolkit. It has everything I can ask for, on steroids.",samples.svelte)}
+                {@render logoCard(linuxImg,"linux","As a cross-platform-passionate developer, I dual-boot Linux and Windows, Linux being my primary choice. I complement my work with Windows as needed. I have experience setting up and maintaining personal Linux servers.",samples.linux)}
+                {@render logoCard(fastImg,"fastapi","FastAPI is my favorite backend framework due to its speed, ease of use, and automatic generation of OpenAPI documentation.",samples.fastApi)}
+                {@render logoCard(fastImg,"fastapi","FastAPI is my favorite backend framework due to its speed, ease of use, and automatic generation of OpenAPI documentation.",samples.fastApi)}
+                {@render logoCard(fastImg,"fastapi","FastAPI is my favorite backend framework due to its speed, ease of use, and automatic generation of OpenAPI documentation.",samples.fastApi)}
             </div>
 
 
