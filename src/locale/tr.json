@@ -1,0 +1,53 @@
+{
+  "main": {
+    "about": {
+      "title": {
+        "main": "Şimdi biraz daha kişisel olalım!",
+        "python": "<span class=\"italic\">Sen</span> de modern programcının evrensel <span class=\"text-yellow-500\">dilini</span> konuşuyor musun?"
+      }
+    },
+    "contact": {
+      "title": "İletişim"
+    },
+    "current": {
+      "current": {
+        "available": "<span class=\"text-green-500 font-semibold\">Müsait</span>",
+        "body": "Şu anda Kıbrıs Doğu Akdeniz Üniversitesi’nde Mühendislik Lisans programına devam ediyorum.",
+        "maybe": "<span class=\"text-primary font-semibold\">Belki müsait</span>",
+        "not_available": "<span class=\"text-destructive font-semibold\">Müsait değil</span>",
+        "offer_label": "Teklif durumu",
+        "title": "Güncel durum"
+      },
+      "title": "Benim hakkımda daha fazlası"
+    },
+    "drawer": {
+      "exit": "Çıkış"
+    },
+    "featuring": {
+      "docker": "Docker, sistem yönetimiyle uğraşanlar için vazgeçilmez bir araçtır. Güvenliği artırmak ve birden fazla oturumu yönetmek için kullandım.",
+      "fastapi": "FastAPI, zengin özellikleri ve yüksek performansıyla tercih ettiğim framework’tür, özellikle de OpenAPI otomatik dokümantasyonu sayesinde.",
+      "hetzner": "Hetzner, fiyatları, mevcut özellikleri ve Avrupa’daki sunucu konumları nedeniyle tercih ettiğim bulut sağlayıcısıdır.",
+      "javascript": "JavaScript/TypeScript’i Svelte ile kullanıyorum; ayrıca script yazarken, akıllı kontratlar için testler hazırlarken veya Express ile back-end geliştirmede de kullanıyorum.",
+      "linux": "Platform bağımsız bir geliştirici olarak Linux ve Windows’u çift açılışla kullanıyorum; ana tercihim Linux’tur. Gerekli olduğunda Windows ile destekliyorum. Kendi Linux sunucularımı kurma ve yönetme deneyimim var.",
+      "python": "Python, her gün istisnasız kullandığım bir araçtır. Script yazma ve back-end geliştirme sadece birkaç örnek. Öğrenmesi ve öğretmesi kolay olduğundan, yazılım şirketleri için en büyük değerlerden biri olduğuna inanıyorum.",
+      "rust": "Katı tip güvenliği ve düşük seviyeli yüksek performansı nedeniyle Rust, back-end ve uygulama geliştirmede kullandığım araçlardan biridir.",
+      "solidity": "Smart contract geliştirmede Solidity ve Hardhat’i tercih ediyorum. Sağladıklarını takdir etsem de, dilin kendisini pek sevmiyorum.",
+      "svelte": "Svelte, başvurduğum ilk front-end framework’tür. İhtiyacım olan her şeye sahiptir — fazlasıyla.",
+      "title": "Araç setim!"
+    },
+    "scroll_butt": "Daha fazla göster",
+    "title": "Merhaba! Ben {name},",
+    "titles": {
+      "option1": "bir yazılım geliştirici",
+      "option2": "bir Linux meraklısı",
+      "option3": "bir ev aşçısı",
+      "option4": "bir back-end geliştirici",
+      "option5": "gelecekteki iş arkadaşın",
+      "option6": "bir dil öğrenme meraklısı",
+      "option7": "meraklı bir pentester",
+      "option8": "bir Arch kullanıcısı",
+      "option9": "bir açık kaynak meraklısı!",
+      "option10": "bir full stack geliştirici"
+    }
+  }
+}

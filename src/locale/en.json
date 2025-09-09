@@ -1,0 +1,53 @@
+{
+	"main": {
+		"about": {
+			"title": {
+				"main": "Now lets get a little personal!",
+				"python": "Do <span class=\"italic\">you</span> speak the universal <span class=\"text-yellow-500\">language</span> of modern day programmer?"
+			}
+		},
+		"contact": {
+			"title": "Contact"
+		},
+		"current": {
+			"current": {
+				"available": "<span class=\"text-green-500 font-semibold\">Available</span>",
+				"body": "I am currently pursuing a Bachelor of Engineering in Eastern Mediterranean University,Cyprus.",
+				"maybe": "<span class=\"text-primary font-semibold\"> Maybe Available </span>",
+				"not_available": "<span class=\"text-destructive font-semibold\">Not Available</span>",
+				"offer_label": "Offer Status",
+				"title": "Current Status"
+			},
+			"title": "More About Me"
+		},
+		"drawer": {
+			"exit": "Leave"
+		},
+		"featuring": {
+			"docker": "Docker is an essential tool for people dealing with system administration, and I utilized it for  better security due to its containerization, as well as when managing multiple sessions.",
+			"fastapi": "FastAPI is my go-to framework due to it's feature rich and high performance toolkit, especiallly due to its OpenAPI auto-documentation.",
+			"hetzner": "Hetzner is my go-to cloud provider due to its pricing and available specifications, as well as its Europe based server locations.",
+			"javascript": "I use JavaScript/TypeScript with Svelte, as well as in some cases where I am scripting, writing test cases for smart contracts, or back-end development on Express.",
+			"linux": "As a cross-platform-passionate developer, I dual-boot Linux and Windows, Linux being my primary choice. I complement my work with Windows as needed. I have experience setting up and maintaining personal Linux servers.",
+			"python": "Python is one tool I use everyday without an exception. Scripting and back-end development are just an example of what I use Python for. I believe it is the greatest asset a software company can incorporate due to its ease of teaching and learning for trainees.",
+			"rust": "Due to it's opinionated nature of type safety and it's low-level high performance, Rust is one of the tools I use for back-end and app development.",
+			"solidity": "Solidity with Hardhat is the suite of my choice when developing a smart contract. While I appreciate what it does, I don't have much love for the language itself.",
+			"svelte": "Svelte is the first front-end development framework I reach for in my toolkit. It has everything I can ask for, on steroids.",
+			"title": "My Toolkit!"
+		},
+		"scroll_butt": "View More",
+		"title": "Hello! I am {name},",
+		"titles": {
+			"option1": "a software developer",
+			"option2": "a Linux enthusiast",
+			"option3": "a home-cook",
+			"option4": "a back-end developer",
+			"option5": "your future coworker",
+			"option6": "a language learning fan",
+			"option7": "a curious pen-tester",
+			"option8": "an Arch user",
+			"option9": "an open sourcer!",
+			"option10": "a full stack developer "
+		}
+	}
+}

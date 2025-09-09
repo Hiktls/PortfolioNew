@@ -1,0 +1,53 @@
+{
+  "main": {
+    "about": {
+      "title": {
+        "main": "Agora vamos ficar um pouco mais pessoais!",
+        "python": "Você <span class=\"italic\">fala</span> a <span class=\"text-yellow-500\">linguagem</span> universal do programador moderno?"
+      }
+    },
+    "contact": {
+      "title": "Contato"
+    },
+    "current": {
+      "current": {
+        "available": "<span class=\"text-green-500 font-semibold\">Disponível</span>",
+        "body": "Atualmente estou a frequentar a Licenciatura em Engenharia na Eastern Mediterranean University, Chipre.",
+        "maybe": "<span class=\"text-primary font-semibold\">Talvez disponível</span>",
+        "not_available": "<span class=\"text-destructive font-semibold\">Indisponível</span>",
+        "offer_label": "Estado da oferta",
+        "title": "Situação atual"
+      },
+      "title": "Mais sobre mim"
+    },
+    "drawer": {
+      "exit": "Sair"
+    },
+    "featuring": {
+      "docker": "O Docker é uma ferramenta essencial para a administração de sistemas. Utilizo-o para maior segurança graças à contenção em containers, bem como para gerir várias sessões.",
+      "fastapi": "O FastAPI é o meu framework preferido pela sua riqueza de funcionalidades e elevado desempenho, especialmente pela documentação automática OpenAPI.",
+      "hetzner": "O Hetzner é o meu fornecedor de cloud preferido pelo preço, pelas especificações disponíveis e pela localização dos servidores na Europa.",
+      "javascript": "Uso JavaScript/TypeScript com Svelte, bem como em alguns casos para scripting, testes de contratos inteligentes ou desenvolvimento back-end em Express.",
+      "linux": "Como desenvolvedor apaixonado por multiplataforma, utilizo Linux e Windows em dual-boot, sendo o Linux a minha escolha principal. Recorro ao Windows quando necessário. Tenho experiência na configuração e manutenção de servidores Linux pessoais.",
+      "python": "Python é uma ferramenta que utilizo todos os dias. Scripting e desenvolvimento back-end são apenas alguns exemplos. Considero-o um dos maiores ativos que uma empresa de software pode ter, graças à sua facilidade de ensino e aprendizagem.",
+      "rust": "Devido à sua forte segurança de tipos e ao seu elevado desempenho de baixo nível, Rust é uma das ferramentas que utilizo para desenvolvimento back-end e de aplicações.",
+      "solidity": "Solidity com Hardhat é a suíte que escolho para desenvolver contratos inteligentes. Embora aprecie o que oferece, não tenho grande simpatia pela linguagem em si.",
+      "svelte": "Svelte é o primeiro framework de front-end que escolho. Tem tudo o que preciso — em potência máxima.",
+      "title": "A minha caixa de ferramentas!"
+    },
+    "scroll_butt": "Ver mais",
+    "title": "Olá! Eu sou {name},",
+    "titles": {
+      "option1": "um desenvolvedor de software",
+      "option2": "um entusiasta de Linux",
+      "option3": "um cozinheiro caseiro",
+      "option4": "um desenvolvedor back-end",
+      "option5": "o teu futuro colega",
+      "option6": "um fã de aprendizagem de línguas",
+      "option7": "um pen-tester curioso",
+      "option8": "um utilizador de Arch",
+      "option9": "um entusiasta de open source!",
+      "option10": "um desenvolvedor full stack"
+    }
+  }
+}

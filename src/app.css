@@ -1,7 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&family=Bellota+Text:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Tektur:wght@400..900&display=swap');
+
 @import "tailwindcss";
 
 @import "tw-animate-css";
-
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -112,8 +113,27 @@
   --color-sidebar-ring: var(--sidebar-ring);
 
 
+  --font-andika: 'Andika', sans-serif;
+  --font-sansation: 'Sansation', sans-serif;
+  --font-bellota-text: 'Bellota Text', sans-serif;
+  --font-tektur: 'Tektur', sans-serif;
+
   --animate-scrolling: scrolling 10s linear infinite;
 
+    @keyframes rotate{
+      0% {transform:rotate(0deg);}
+      10% {transform:rotate(36deg);}
+      20% {transform:rotate(72deg);}
+      30% {transform:rotate(108deg);}
+      40% {transform:rotate(144deg);}
+      50% {transform:rotate(180deg);}
+      60% {transform:rotate(216deg);}
+      70% {transform:rotate(252deg);}
+      80% {transform:rotate(288deg);}
+      90% {transform:rotate(334deg);}
+      100% {transform:rotate(360deg);}
+    }
+    --animate-rotating: rotate 5s linear infinite;
     @keyframes scrolling {
       0% {
         transform: translateX(0);
@@ -121,6 +141,7 @@
       100% {
         transform: translateX(-100%);
       }
+
   }
   
 
@@ -134,3 +155,102 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+
+.andika-regular {
+  font-family: "Andika", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.andika-bold {
+  font-family: "Andika", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.andika-regular-italic {
+  font-family: "Andika", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.andika-bold-italic {
+  font-family: "Andika", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.sansation-light {
+  font-family: "Sansation", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.sansation-regular {
+  font-family: "Sansation", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.sansation-bold {
+  font-family: "Sansation", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.sansation-light-italic {
+  font-family: "Sansation", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.sansation-regular-italic {
+  font-family: "Sansation", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.sansation-bold-italic {
+  font-family: "Sansation", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.bellota-text-light {
+  font-family: "Bellota Text", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.bellota-text-regular {
+  font-family: "Bellota Text", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.bellota-text-bold {
+  font-family: "Bellota Text", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.bellota-text-light-italic {
+  font-family: "Bellota Text", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.bellota-text-regular-italic {
+  font-family: "Bellota Text", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.bellota-text-bold-italic {
+  font-family: "Bellota Text", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+

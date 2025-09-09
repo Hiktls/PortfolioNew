@@ -1,0 +1,53 @@
+{
+  "main": {
+    "about": {
+      "title": {
+        "main": "Jetzt wird’s ein wenig persönlicher!",
+        "python": "Sprichst <span class=\"italic\">du</span> die universelle <span class=\"text-yellow-500\">Sprache</span> des modernen Programmierers?"
+      }
+    },
+    "contact": {
+      "title": "Kontakt"
+    },
+    "current": {
+      "current": {
+        "available": "<span class=\"text-green-500 font-semibold\">Verfügbar</span>",
+        "body": "Zurzeit studiere ich Ingenieurwissenschaften an der Eastern Mediterranean University in Zypern.",
+        "maybe": "<span class=\"text-primary font-semibold\">Vielleicht verfügbar</span>",
+        "not_available": "<span class=\"text-destructive font-semibold\">Nicht verfügbar</span>",
+        "offer_label": "Angebotsstatus",
+        "title": "Aktueller Status"
+      },
+      "title": "Mehr über mich"
+    },
+    "drawer": {
+      "exit": "Verlassen"
+    },
+    "featuring": {
+      "docker": "Docker ist ein unverzichtbares Werkzeug für Systemadministratoren. Ich nutze es für mehr Sicherheit durch Containerisierung sowie zum Verwalten mehrerer Sitzungen.",
+      "fastapi": "FastAPI ist mein bevorzugtes Framework dank seiner Funktionsvielfalt und hohen Leistung, insbesondere wegen der automatischen OpenAPI-Dokumentation.",
+      "hetzner": "Hetzner ist mein bevorzugter Cloud-Anbieter aufgrund der Preise, der verfügbaren Spezifikationen und der Serverstandorte in Europa.",
+      "javascript": "Ich verwende JavaScript/TypeScript mit Svelte sowie in manchen Fällen zum Skripten, Schreiben von Testfällen für Smart Contracts oder für Back-End-Entwicklung mit Express.",
+      "linux": "Als plattformübergreifend leidenschaftlicher Entwickler nutze ich ein Dual-Boot-System mit Linux und Windows, wobei Linux meine Hauptwahl ist. Windows ergänze ich je nach Bedarf. Ich habe Erfahrung im Einrichten und Betreiben eigener Linux-Server.",
+      "python": "Python ist ein Werkzeug, das ich jeden Tag ohne Ausnahme benutze. Skripting und Back-End-Entwicklung sind nur einige Beispiele. Ich halte es für das größte Kapital, das ein Softwareunternehmen einbringen kann, da es für Trainees leicht zu erlernen und zu lehren ist.",
+      "rust": "Aufgrund seiner strikten Typsicherheit und seiner Low-Level-Hochleistung ist Rust eines der Werkzeuge, die ich für Back-End- und App-Entwicklung verwende.",
+      "solidity": "Solidity mit Hardhat ist meine bevorzugte Suite für die Entwicklung von Smart Contracts. Auch wenn ich schätze, was es bietet, habe ich die Sprache selbst nicht sonderlich ins Herz geschlossen.",
+      "svelte": "Svelte ist das erste Front-End-Framework, zu dem ich greife. Es hat alles, was ich mir wünschen kann – im Überfluss.",
+      "title": "Mein Werkzeugkasten!"
+    },
+    "scroll_butt": "Mehr anzeigen",
+    "title": "Hallo! Ich bin {name},",
+    "titles": {
+      "option1": "ein Softwareentwickler",
+      "option2": "ein Linux-Enthusiast",
+      "option3": "ein Hobbykoch",
+      "option4": "ein Back-End-Entwickler",
+      "option5": "dein zukünftiger Kollege",
+      "option6": "ein Sprachenlern-Fan",
+      "option7": "ein neugieriger Pen-Tester",
+      "option8": "ein Arch-Nutzer",
+      "option9": "ein Open-Source-Begeisterter!",
+      "option10": "ein Full-Stack-Entwickler"
+    }
+  }
+}
